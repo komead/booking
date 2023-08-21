@@ -1,7 +1,7 @@
 package com.example.booking.repository;
 
 import com.example.booking.entity.Flight;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface FlightRepository extends CrudRepository<Flight, Integer> {
+public interface FlightRepository extends JpaRepository<Flight, Integer> {
 }
