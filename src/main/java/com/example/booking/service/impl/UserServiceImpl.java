@@ -3,6 +3,7 @@ package com.example.booking.service.impl;
 import com.example.booking.entity.User;
 import com.example.booking.repository.UserRepository;
 import com.example.booking.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,12 +12,17 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
+    @Autowired
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @Override
     public void addUser(User user)
     {
         if (userRepository.existsByUsername(user.getUsername()))
             throw new RuntimeException("User with username " + user.getUsername() + " is already exist");
-        userRepository.save(user);
+        userRepository.saveAndFlush(user);
     }
 
     @Override

@@ -1,7 +1,10 @@
 package com.example.booking.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,6 +13,7 @@ import java.util.List;
 @Entity
 @Table(name = "flights")
 @Data
+@NoArgsConstructor
 public class Flight {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,19 +25,9 @@ public class Flight {
     @Column(nullable = false)
     private String arrivalPoint;
 
-    @Column(nullable = false)
-    private Date departureDate;
-
-    @Column(nullable = false)
-    private Date arrivalDate;
-
-    @Column(nullable = false)
-    private String price;
-
     private int totalSeats;
 
-    private boolean completed;
-
     @OneToMany(mappedBy = "flight")
+    @JsonIgnore
     private List<BookingHistory> bookingHistory = new ArrayList<>();
 }

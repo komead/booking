@@ -4,10 +4,10 @@ VALUES
     ('vechaslavoo', 'cn2krti', 'vech41@mail.ru'),
     ('user345', 'asdfghjkl', 'cxzgf@gmail.com');
 
-insert into flights(point_of_departure, arrival_point, departure_date, arrival_date, price, total_seats)
+insert into flights(point_of_departure, arrival_point, total_seats)
 VALUES
-    ('Minsk', 'Paris', '2023-08-15 15:00:00', '2023-08-16 09:00:00', 850, 3),
-    ('Brest', 'Tokyo', '2023-09-29 12:00:00', '2023-09-30 17:00:00', 1120, 126);
+    ('Minsk', 'Paris', 3),
+    ('Brest', 'Tokyo', 126);
 
 insert into booking_history(flight_id, user_id)
 VALUES
