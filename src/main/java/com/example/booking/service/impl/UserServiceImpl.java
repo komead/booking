@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
     {
         if (userRepository.existsByUsername(user.getUsername()))
             throw new RuntimeException("User with username " + user.getUsername() + " is already exist");
-        userRepository.saveAndFlush(user);
+        userRepository.save(user);
     }
 
     @Override
@@ -31,6 +31,14 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByUsername(username);
         if (user == null)
             throw new RuntimeException("No such user with username: " + username);
+        return user;
+    }
+
+    @Override
+    public User getUserById(int id) {
+        User user = userRepository.findById(id);
+        if (user == null)
+            throw new RuntimeException("No such user with id: " + id);
         return user;
     }
 

@@ -3,11 +3,13 @@ package com.example.booking.controller;
 import com.example.booking.entity.User;
 import com.example.booking.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserController {
     UserService userService;
@@ -18,18 +20,27 @@ public class UserController {
     }
 
     @PostMapping("/new")
-    public void create(@RequestBody User user) {
+    public String create(@ModelAttribute User user) {
         userService.addUser(user);
+        return "redirect:/user";
     }
 
-    @PutMapping("/edit/{userId}")
-    public void editUser(@PathVariable int userId, @RequestBody User user) {
-        userService.editUser(userId, user);
+    @GetMapping("/edit/{id}")
+    public String editUser(@PathVariable(value = "id") int id, Model model) {
+        model.addAttribute("user", userService.getUserById(id));
+        return "editUser";
     }
 
-    @DeleteMapping("/delete/{userId}")
-    public void deleteUser(@PathVariable int userId) {
-        userService.deleteUserById(userId);
+    @PostMapping("/edit/{id}")
+    public String updateUser(@PathVariable(value = "id") int id, @ModelAttribute User user) {
+        userService.editUser(id, user);
+        return "redirect:/user";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String deleteUser(@PathVariable(value = "id") int id) {
+        userService.deleteUserById(id);
+        return "redirect:/user";
     }
 
     @GetMapping("/users/{username}")
@@ -37,8 +48,10 @@ public class UserController {
         return userService.getUserByUsername(username);
     }
 
-    @GetMapping("/users")
-    public List<User> getAll() {
-        return userService.getAll();
+    @GetMapping("")
+    public String getAll(Model model) {
+        Iterable<User> users = userService.getAll();
+        model.addAttribute("users", users);
+        return "user";
     }
 }

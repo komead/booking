@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="EditUser"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <div th:insert="blocks/header :: header"></div>
+        <div>
+            <h1>Main page</h1>
+        </div>
+        <div>
+            <form method="post">
+                <input type="text" name="id" placeholder="Введите id" th:value="${user.id}">
+                <input type="text" name="username" placeholder="Введите имя пользователя" th:value="${user.username}">
+                <input type="text" name="email" placeholder="Введите почту" th:value="${user.email}">
+                <input type="text" name="password" placeholder="Введите пароль" th:value="${user.password}">
+                <button type="submit">Изменить</button>
+            </form>
+        </div>
+    </body>
+</html>
