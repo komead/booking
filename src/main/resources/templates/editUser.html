@@ -3,19 +3,33 @@
     <head>
         <title th:text="EditUser"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     </head>
     <body>
-        <div th:insert="blocks/header :: header"></div>
-        <div>
-            <h1>Main page</h1>
+    <nav th:insert="blocks/header :: header"></nav>
+        <div class="heading">
+            <h1>Edit user</h1>
         </div>
-        <div>
+
+        <div style="margin-left: 20%; margin-right: 20%">
             <form method="post">
-                <input type="text" name="id" placeholder="Введите id" th:value="${user.id}">
-                <input type="text" name="username" placeholder="Введите имя пользователя" th:value="${user.username}">
-                <input type="text" name="email" placeholder="Введите почту" th:value="${user.email}">
-                <input type="text" name="password" placeholder="Введите пароль" th:value="${user.password}">
-                <button type="submit">Изменить</button>
+                <div class="mb-3">
+                    <input name="id" type="hidden" class="form-control" th:value="${user.id}">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputUsername1" class="form-label">Username</label>
+                    <input name="username" type="text" class="form-control" id="exampleInputUsername1" th:value="${user.username}">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input name="email" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" th:value="${user.email}">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input name="password" type="password" class="form-control" id="exampleInputPassword1" th:value="${user.password}">
+                </div>
+                <button type="submit" class="btn btn-primary">Изменить</button>
             </form>
         </div>
     </body>
