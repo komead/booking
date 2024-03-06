@@ -2,37 +2,36 @@ package com.example.booking.controller;
 
 import com.example.booking.entity.User;
 import com.example.booking.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/user")
+@AllArgsConstructor
 public class UserController {
-    UserService userService;
-
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+    private UserService userService;
+    private PasswordEncoder passwordEncoder;
 
     @PostMapping("/new")
     public String create(@ModelAttribute User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userService.addUser(user);
         return "redirect:/user";
     }
 
     @GetMapping("/edit/{id}")
     public String editUser(@PathVariable(value = "id") int id, Model model) {
-        model.addAttribute("user", userService.getUserById(id));
+        User user = userService.getUserById(id);
+        model.addAttribute("user", user);
         return "editUser";
     }
 
     @PostMapping("/edit/{id}")
     public String updateUser(@PathVariable(value = "id") int id, @ModelAttribute User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userService.editUser(id, user);
         return "redirect:/user";
     }
@@ -41,11 +40,6 @@ public class UserController {
     public String deleteUser(@PathVariable(value = "id") int id) {
         userService.deleteUserById(id);
         return "redirect:/user";
-    }
-
-    @GetMapping("/users/{username}")
-    public User getUser(@PathVariable String username) {
-        return userService.getUserByUsername(username);
     }
 
     @GetMapping("")

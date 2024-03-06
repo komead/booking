@@ -1,8 +1,8 @@
 insert into users(username, password, email)
 VALUES
-    ('polzovatel', 'asd123', 'andrei439@mail.ru'),
+    ('polzovatel', '$2a$10$xlPCn7vfBBq9jQTFJVGz.emughvJXPf2GMuq55S0Tuw7ZuK2Zghdu', 'andrei439@mail.ru'),
     ('vechaslavoo', 'cn2krti', 'vech41@mail.ru'),
-    ('user345', 'asdfghjkl', 'cxzgf@gmail.com');
+    ('user345', '$2a$10$hhTvV3MTGw82IyWtR7VyUuczkTd5xPQMZaGuQRKy0smyAkoMH4XxW', 'cxzgf@gmail.com');
 
 insert into flights(point_of_departure, arrival_point, total_seats)
 VALUES

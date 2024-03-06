@@ -1,37 +1,28 @@
 package com.example.booking.service.impl;
 
+import com.example.booking.entity.Role;
 import com.example.booking.entity.User;
 import com.example.booking.repository.UserRepository;
 import com.example.booking.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
-
-    @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     @Override
     public void addUser(User user)
     {
         if (userRepository.existsByUsername(user.getUsername()))
             throw new RuntimeException("User with username " + user.getUsername() + " is already exist");
-        userRepository.save(user);
-    }
 
-    @Override
-    public User getUserByUsername(String username)
-    {
-        User user = userRepository.findByUsername(username);
-        if (user == null)
-            throw new RuntimeException("No such user with username: " + username);
-        return user;
+        user.setRole(Role.USER);
+
+        userRepository.save(user);
     }
 
     @Override
