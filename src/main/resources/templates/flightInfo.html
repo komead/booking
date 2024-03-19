@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>FlightInfo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../static/css/commonStyles.css">
+    </head>
+    <body>
+        <nav th:insert="blocks/header :: header"></nav>
+        <div>
+            <h1>Flight info</h1>
+        </div>
+
+        <div>
+                <div>
+                    <input name="id" type="hidden" th:value="${flight.id}">
+                </div>
+                <div>
+                    <label for="inputPointOfDeparture">PointOfDeparture</label>
+                    <input name="pointOfDeparture" type="text" id="inputPointOfDeparture" th:value="${flight.pointOfDeparture}">
+                </div>
+                <div>
+                    <label for="inputArrivalPoint">ArrivalPoint</label>
+                    <input name="arrivalPoint" type="text" id="inputArrivalPoint" th:value="${flight.arrivalPoint}">
+                </div>
+                <div>
+                    <label for="inputTotalSeats">TotalSeats</label>
+                    <input name="totalSeats" type="text" id="inputTotalSeats" th:value="${flight.totalSeats}">
+                </div>
+                <div>
+                    <form th:action="@{/flight/book/{flightId}(flightId=${flight.id})}" method="post">
+                        <button type="submit" class="btn btn-primary">Забронировать</button>
+                    </form>
+                </div>
+        </div>
+    </body>
+</html>

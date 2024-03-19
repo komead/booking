@@ -1,45 +1,29 @@
-body, html {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    width: 100%;
+html, body {
     height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
 }
 
 nav {
-    width: 100%;
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
+    flex: 0 1 auto;
 }
 
-.container {
+main {
+    flex: 1;
     display: flex;
-    justify-content: space-between;
-    padding: 10px 20px; /* Добавляет внутренние отступы для контейнера */
+    flex-direction: column;
+    justify-content: center;
 }
 
-.navbar-ul {
-    list-style-type: none;
-    padding-left: 20px;
-    margin: 0;
+h1 {
+    text-align: center;
+    margin-bottom: 50px;
 }
 
-.navbar-ul li {
-    display: inline-block;
-    margin-right: 20px;
-}
-
-.navbar-ul li:last-child {
-    margin-right: 0;
-}
-
-.navbar-ul li a {
-    text-decoration: none; /* Убирает подчеркивание у ссылок */
-    color: #fff; /* Цвет текста ссылок */
-}
-
-.navbar-ul li a:hover {
-    color: #ff0; /* Цвет текста ссылки при наведении */
+.m-horizon {
+    margin: 0 15%;
 }

@@ -3,14 +3,33 @@
     <head>
         <meta charset="UTF-8">
         <title>Register</title>
-        <link rel="stylesheet" type="text/css" href="../static/css/commonStyles.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../static/css/commonStyles.css">
     </head>
     <body>
-        <form action="register" method="post">
-            <input type="text" name="username" placeholder="Введите имя пользователя">
-            <input type="text" name="email" placeholder="Введите почту">
-            <input type="text" name="password" placeholder="Введите пароль">
-            <button type="submit">Зарегистрироваться</button>
-        </form>
+        <nav th:insert="blocks/header :: header"></nav>
+
+        <main style="max-width: 400px" class="w-100 m-auto">
+            <form action="/register" method="post">
+                <h1 class="h3 mb-3 fw-normal">Please fill fields</h1>
+
+                <div class="form-floating">
+                    <label for="floatingUsername">Username</label>
+                    <input type="text" class="form-control" id="floatingUsername" name="username" placeholder="Введите имя пользователя">
+                </div>
+                <br>
+                <div class="form-floating">
+                    <label for="floatingInput">Email address</label>
+                    <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
+                </div>
+                <br>
+                <div class="form-floating">
+                    <label for="floatingPassword">Password</label>
+                    <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Введите пароль">
+                </div>
+                <br>
+                <button class="btn btn-primary w-100 py-2" type="submit">Зарегистрироваться</button>
+            </form>
+        </main>
     </body>
 </html>

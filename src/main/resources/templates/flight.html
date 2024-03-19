@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="Flights"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../static/css/commonStyles.css">
+    </head>
+    <body>
+        <nav th:insert="blocks/header :: header"></nav>
+        <div>
+            <h1>Flights page</h1>
+        </div>
+
+        <div>
+            <form th:if="${isAdmin}" class="m-horizon" action="flight/new" method="post">
+                <input type="text" name="pointOfDeparture" placeholder="Введите точку отправления">
+                <input type="text" name="arrivalPoint" placeholder="Введите точку прибытия">
+                <input type="text" name="totalSeats" placeholder="Введите общее количество мест">
+                <button type="submit">Добавить</button>
+            </form>
+
+            <div class="m-horizon">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <td>Id</td>
+                        <td>PointOfDeparture</td>
+                        <td>ArrivalPoint</td>
+                        <td>totalSeats</td>
+                    </tr>
+                    </thead>
+                    <tbody th:each="element : ${flights}">
+                    <tr>
+                        <td th:text="${element.id}"/>
+                        <td th:text="${element.pointOfDeparture}"/>
+                        <td th:text="${element.arrivalPoint}"/>
+                        <td th:text="${element.totalSeats}"/>
+                        <td>
+                            <form th:action="@{/flight/info/{id}(id=${element.id})}">
+                                <button type="submit" class="btn btn-primary">Подробнее</button>
+                            </form>
+                        </td>
+                        <td th:if="${isAdmin}">
+                            <form th:action="@{/flight/edit/{id}(id=${element.id})}">
+                                <button type="submit" class="btn btn-warning">Изменить</button>
+                            </form>
+                        </td>
+                        <td th:if="${isAdmin}">
+                            <form th:action="@{/flight/delete/{id}(id=${element.id})}" method="post">
+                                <button type="submit" class="btn btn-danger">Удалить</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

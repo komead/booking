@@ -2,26 +2,35 @@
 <html xmlns:th="https://www.thymeleaf.org">
     <head>
         <title>Login </title>
-        <link rel="stylesheet" type="text/css" href="/static/css/commonStyles.css"/>
-        <link rel="stylesheet" type="text/css" href="/static/css/login.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../static/css/commonStyles.css">
     </head>
     <body>
         <nav th:insert="blocks/header :: header"></nav>
-        <div class="cont">
-            <h1>Login page</h1>
+
+        <main style="max-width: 330px" class="w-100 m-auto">
             <form action="/login" method="post">
-                <div>
-                    <label for="inputUsername"> User Name</label>
-                    <input type="text" name="username" id="inputUsername"/>
+                <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+                <div class="form-floating">
+                    <label for="floatingInput">Username</label>
+                    <input type="text" class="form-control" id="floatingInput" name="username" placeholder="username">
                 </div>
-                <div>
-                    <label for="inputPassword"> Password</label>
-                    <input type="password" name="password" id="inputPassword"/>
-                </div>
-                <div>
-                    <input type="submit" value="Sign In"/>
-                </div>
+                <br>
+                <div class="form-floating">
+                    <label for="floatingPassword">Password</label>
+                    <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+                </div><br>
+                <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
             </form>
-        </div>
+
+            <div style="text-align: center; margin: 10px 0">
+                or
+            </div>
+
+            <form action="/register" method="get">
+                <button class="btn btn-primary w-100 py-2" type="submit">Create new account</button>
+            </form>
+        </main>
     </body>
 </html>

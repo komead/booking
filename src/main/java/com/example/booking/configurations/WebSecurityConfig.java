@@ -24,7 +24,7 @@ public class WebSecurityConfig {
                         .disable())
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/register", "/login", "/", "/static/**").permitAll()
-                        .anyRequest().hasAuthority("USER")
+                        .anyRequest().hasAnyAuthority("USER", "ADMIN")
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")

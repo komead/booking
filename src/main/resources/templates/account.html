@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="Account"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../static/css/commonStyles.css">
+        <link rel="stylesheet" href="../static/css/account.css">
+    </head>
+    <body>
+        <nav th:insert="blocks/header :: header"></nav>
+        <div>
+            <h1>Account page</h1>
+        </div>
+
+        <div class="m-horizon userInfo">
+                <div>
+                    <div>Id</div>
+                    <div th:text="${user.id}"/>
+                </div>
+                <div>
+                    <div>Username</div>
+                    <div th:text="${user.username}"/>
+                </div>
+                <div>
+                    <div>Email</div>
+                    <div th:text="${user.email}"/>
+                </div>
+                <div>
+                    <div>Password</div>
+                    <div th:text="${user.password}"/>
+                </div>
+        </div>
+
+        <div class="m-horizon historyTable">
+            <h3 style="margin: 30px 0">
+                История бронирований
+            </h3>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <td>Точка отправления</td>
+                    <td>Конечная точка</td>
+                    <td>Дата бронирования</td>
+                </tr>
+                </thead>
+                <tbody th:each="element : ${history}">
+                <tr>
+                    <td th:text="${element.flight.pointOfDeparture}"/>
+                    <td th:text="${element.flight.arrivalPoint}"/>
+                    <td th:text="${element.bookingDate}"/>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="m-horizon">
+            <form action="/logout" method="get">
+                <button type="submit" class="btn btn-danger">Выйти из аккаунта</button>
+            </form>
+        </div>
+    </body>
+</html>

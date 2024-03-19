@@ -34,6 +34,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUserByUsername(String username) {
+        User user = userRepository.findByUsername(username).orElse(null);
+        if (user == null)
+            throw new RuntimeException("No such user with username: " + username);
+        return user;
+    }
+
+    @Override
     public void editUser(int id, User user)
     {
         User oldUser = userRepository.findById(id);

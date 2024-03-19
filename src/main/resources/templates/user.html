@@ -3,49 +3,53 @@
     <head>
         <title th:text="Users"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link rel="stylesheet" type="text/css" href="../static/css/commonStyles.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../static/css/commonStyles.css">
     </head>
     <body>
         <nav th:insert="blocks/header :: header"></nav>
-        <div class="heading">
+        <div>
             <h1>Users page</h1>
         </div>
 
-        <div style="width: 90%; margin-left: 5%">
-            <form action="user/new" method="post">
+        <div>
+            <form class="m-horizon" action="user/new" method="post">
                 <input type="text" name="username" placeholder="Введите имя пользователя">
                 <input type="text" name="email" placeholder="Введите почту">
                 <input type="text" name="password" placeholder="Введите пароль">
                 <button type="submit">Добавить</button>
             </form>
-            <table class="table table-striped">
-                <thead>
+
+            <div class="m-horizon">
+                <table class="table table-striped">
+                    <thead>
                     <tr>
                         <td>Id</td>
                         <td>Username</td>
                         <td>Email</td>
                         <td>Password</td>
                     </tr>
-                </thead>
-                <tbody th:each="element : ${users}">
+                    </thead>
+                    <tbody th:each="element : ${users}">
                     <tr>
-                        <td style="width: 5%" th:text="${element.id}"/>
-                        <td style="width: 25%" th:text="${element.username}"/>
-                        <td style="width: 25%" th:text="${element.email}"/>
-                        <td style="width: 25%" th:text="${element.password}"/>
-                        <td style="width: 10%">
+                        <td th:text="${element.id}"/>
+                        <td th:text="${element.username}"/>
+                        <td th:text="${element.email}"/>
+                        <td th:text="${element.password}"/>
+                        <td>
                             <form th:action="@{/user/edit/{id}(id=${element.id})}">
-                                <button type="submit">Изменить</button>
+                                <button type="submit" class="btn btn-warning">Изменить</button>
                             </form>
                         </td>
-                        <td style="width: 10%">
+                        <td>
                             <form th:action="@{/user/delete/{id}(id=${element.id})}" method="post">
-                                <button type="submit">Удалить</button>
+                                <button type="submit" class="btn btn-danger">Удалить</button>
                             </form>
                         </td>
                     </tr>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </body>
 </html>
