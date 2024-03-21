@@ -7,12 +7,12 @@
         <link rel="stylesheet" href="../../static/css/commonStyles.css">
     </head>
     <body>
-        <nav th:insert="blocks/header :: header"></nav>
+        <nav th:replace="blocks/header :: header"></nav>
         <div>
             <h1>Edit user</h1>
         </div>
 
-        <div>
+        <div class="m-horizon">
             <form class="m-horizon" method="post">
                 <div>
                     <input name="id" type="hidden" th:value="${user.id}">
@@ -24,7 +24,6 @@
                 <div>
                     <label for="inputEmail">Email address</label>
                     <input name="email" type="text" id="inputEmail" aria-describedby="emailHelp" th:value="${user.email}">
-                    <div id="emailHelp">We'll never share your email with anyone else.</div>
                 </div>
                 <div>
                     <label for="inputPassword">Password</label>

@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="../static/css/commonStyles.css">
     </head>
     <body>
-        <nav th:insert="blocks/header :: header"></nav>
+        <nav th:replace="blocks/header :: header"></nav>
 
         <main style="max-width: 330px" class="w-100 m-auto">
             <form action="/login" method="post">

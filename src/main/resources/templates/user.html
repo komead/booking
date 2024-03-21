@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head>
         <title th:text="Users"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="../static/css/commonStyles.css">
     </head>
     <body>
-        <nav th:insert="blocks/header :: header"></nav>
+        <nav th:replace="blocks/header :: header"></nav>
         <div>
             <h1>Users page</h1>
         </div>

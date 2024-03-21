@@ -60,13 +60,9 @@ public class FlightController {
     }
 
     @GetMapping("")
-    public String getAll(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+    public String getAll(Model model) {
         Iterable<Flight> flights = flightService.getAll();
 
-        boolean isAdmin = userDetails.getAuthorities().stream()
-                .anyMatch(a -> a.getAuthority().equals("ADMIN"));
-
-        model.addAttribute("isAdmin", isAdmin);
         model.addAttribute("flights", flights);
         return "flight";
     }

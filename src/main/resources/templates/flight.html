@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head>
         <title th:text="Flights"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="../static/css/commonStyles.css">
     </head>
     <body>
-        <nav th:insert="blocks/header :: header"></nav>
+        <nav th:replace="blocks/header :: header"></nav>
         <div>
             <h1>Flights page</h1>
         </div>
@@ -41,12 +41,12 @@
                                 <button type="submit" class="btn btn-primary">Подробнее</button>
                             </form>
                         </td>
-                        <td th:if="${isAdmin}">
+                        <td sec:authorize="hasAuthority('ADMIN')">
                             <form th:action="@{/flight/edit/{id}(id=${element.id})}">
                                 <button type="submit" class="btn btn-warning">Изменить</button>
                             </form>
                         </td>
-                        <td th:if="${isAdmin}">
+                        <td sec:authorize="hasAuthority('ADMIN')">
                             <form th:action="@{/flight/delete/{id}(id=${element.id})}" method="post">
                                 <button type="submit" class="btn btn-danger">Удалить</button>
                             </form>

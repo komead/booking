@@ -4,15 +4,15 @@
         <title>EditFlight</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../static/css/commonStyles.css">
+        <link rel="stylesheet" href="../../static/css/commonStyles.css">
     </head>
     <body>
-        <nav th:insert="blocks/header :: header"></nav>
+        <nav th:replace="blocks/header :: header"></nav>
         <div>
             <h1>Edit flight</h1>
         </div>
 
-        <div>
+        <div class="m-horizon">
             <form method="post">
                 <div>
                     <input name="id" type="hidden" th:value="${flight.id}">

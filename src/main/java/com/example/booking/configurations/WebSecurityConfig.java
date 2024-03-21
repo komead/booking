@@ -23,7 +23,8 @@ public class WebSecurityConfig {
                 .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer
                         .disable())
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/register", "/login", "/", "/static/**").permitAll()
+                        .requestMatchers("/register", "/login", "/", "/static/**", "/flight").permitAll()
+                        .requestMatchers("/user").hasAuthority("ADMIN")
                         .anyRequest().hasAnyAuthority("USER", "ADMIN")
                 )
                 .formLogin((form) -> form
